@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useSigninMutation } from '../hooks/userHooks'
 import { Store } from '../Store'
 import { toast } from 'react-toastify'
 import { getError } from '../utils'
@@ -8,6 +7,7 @@ import { ApiError } from '../types/ApiError'
 import { Button, Container, Form } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import LoadingBox from '../components/LoadingBox'
+import { useSigninMutation } from '../hooks/userHooks'
 
 export default function SigninPage() {
   const navigate = useNavigate()
@@ -21,6 +21,8 @@ export default function SigninPage() {
   const { state, dispatch } = useContext(Store)
   const { userInfo } = state
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const { mutateAsync: signin, isLoading } = useSigninMutation()
 
   const submitHandler = async (e: React.SyntheticEvent) => {
